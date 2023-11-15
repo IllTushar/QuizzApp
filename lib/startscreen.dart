@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:quizapp/question1.dart';
 
 class StartScreen extends StatefulWidget {
-  late Color color1;
-  late Color color2;
+  const StartScreen({super.key, required this.color1, required this.color2});
 
-  StartScreen(Color color1, Color color2) {
-    this.color1 = color1;
-    this.color2 = color2;
-  }
+  final Color color1;
+  final Color color2;
 
   @override
   State<StartScreen> createState() => _StartScreenState();
@@ -19,7 +16,9 @@ class _StartScreenState extends State<StartScreen> {
   var startingColor = Alignment.topLeft;
   var bottomColor = Alignment.bottomLeft;
 
+
   void _goToLogin() {
+
     Navigator.push(
         context,
         MaterialPageRoute(

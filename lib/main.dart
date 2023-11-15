@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/startscreen.dart';
-
+import 'package:quizapp/toolbar.dart';
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Home(),
@@ -12,17 +12,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+String activityNames = "StartActivity";
+
   @override
   Widget build(BuildContext context) {
 // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple,
-        title: Center(child: Text("Quiz App")),
-        elevation: 2.0,
-      ),
+      appBar:Toolbar(Colors.purple, activityNames),
       body: Container(
-        child: StartScreen(Colors.purple, Colors.deepPurple),
+        child: const StartScreen(color1: Colors.purple,color2: Colors.deepPurple),
       ),
     );
   }
