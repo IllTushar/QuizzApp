@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quizapp/Answer.dart';
+import 'package:quizapp/model/questionandanswer.dart';
 
 class question1 extends StatefulWidget {
-  late Color color1;
-  late Color color2;
-
-  question1(Color color1, Color color2) {
-    this.color1 = color1;
-    this.color2 = color2;
-  }
+  question1(this.color1,this.color2);
+  final Color color1;
+  final Color color2;
 
   @override
   State<question1> createState() => _question1State();
@@ -21,6 +19,7 @@ class _question1State extends State<question1> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    final  currentQuestion = question[0];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: widget.color1,
@@ -40,9 +39,9 @@ class _question1State extends State<question1> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Question 1",
-                  style: TextStyle(
+                 Text(
+                  currentQuestion.question,
+                  style:const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontFamily: "newfonts"),
@@ -50,10 +49,8 @@ class _question1State extends State<question1> {
                 const SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(onPressed: () {}, child: Text("Answer 1"),style: ElevatedButton.styleFrom(primary: Colors.lightBlue),),
-                ElevatedButton(onPressed: () {}, child: Text("Answer 2"),style: ElevatedButton.styleFrom(primary: Colors.lightBlue),),
-                ElevatedButton(onPressed: () {}, child: Text("Answer 3"),style: ElevatedButton.styleFrom(primary: Colors.lightBlue),),
-                ElevatedButton(onPressed: () {}, child: Text("Answer 4"),style: ElevatedButton.styleFrom(primary: Colors.lightBlue),),
+                //... => Are Spreed Oprater..
+                ...currentQuestion.answer.map((answer) => Answer(text: answer, onTap: (){})),
               ],
             ),
           ),
