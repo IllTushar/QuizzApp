@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quizapp/Answer.dart';
 import 'package:quizapp/ResultScreen.dart';
 import 'package:quizapp/model/questionandanswer.dart';
-import 'package:quizapp/startscreen.dart';
 import 'package:quizapp/toolbar.dart';
 
 class question1 extends StatefulWidget {
@@ -30,13 +29,27 @@ class _question1State extends State<question1> {
     });
   }
 
+  List<Map<String, Object>> resultFunction() {
+    List<Map<String, Object>> summerOfTheResult = [];
+    for(var i =0;i<answer.length;i++){
+      summerOfTheResult.add({
+        "index":i,
+        "question":question[i].question,
+        "correct-answer":question[i].answer[0],
+        "your-answer":answer[i]
+      });
+    }
+    return summerOfTheResult;
+  }
+
   void noOfQuestions() {
     if (answer.length == question.length) {
       setState(() {
-        List<String> answer = [];
-
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ResultScreen(color1: widget.color1, color2: widget.color2)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ResultScreen(resultFunction(),
+                    color1: widget.color1, color2: widget.color2)));
       });
     }
   }
@@ -46,7 +59,7 @@ class _question1State extends State<question1> {
     // TODO: implement build
     final currentQuestion = question[currentQuestionIndex];
     return Scaffold(
-      appBar:Toolbar(widget.color1, "Quizz"),
+      appBar: Toolbar(widget.color1, "Quizz"),
       body: SizedBox(
         width: double.infinity,
         child: Container(
